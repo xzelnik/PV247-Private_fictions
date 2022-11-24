@@ -43,12 +43,12 @@
     - short description of app
     - button to catalog
     
- - Login page
+  - Login page
    ...
  
- - My stories
-  - catalog of user stories
-  - button - create new story
+  - My stories
+   - catalog of user stories
+   - button - create new story
   
   
   ## Extra API
