@@ -10,43 +10,42 @@
 
 ## Structure
  - Story detail - editable if story belongs to logged in user
-  - delete button if logged in users story
-  - title
-  - tldr 
-    - short description
-    - tags
-    - rating
-  - full text
-  - Rate this story - popup
-  - comment section - not editable
-    - name
-    - date
-    - text
-  - possible download
+   - delete button if logged in users story
+   - title
+   - short description
+   - tags
+   - rating
+   - full text
+   - Rate this story - popup
+   - comment section - not editable
+     - name
+     - date
+     - text
+   - possible download
  
  
  - Story Catalog
-  - filter
-    - sort
-      - ratingu
-      - alphabet asc desc
-    - tag
-    - author
-  - story previews
-    - title
-    - short description
-    - max 3 tags
-    - button - read -> story detail
+   - filter
+     - sort
+       - ratingu
+       - alphabet asc desc
+     - tag
+     - author
+   - story previews
+     - title
+     - short description
+     - max 3 tags
+     - button - read -> story detail
   
-  - Homepage
-    - image
-    - short description of app
-    - button to catalog
+ - Homepage
+   - image
+   - short description of app
+   - button to catalog
     
-  - Login page
-   ...
+ - Login page
+  ...
  
-  - My stories
+ - My stories
    - catalog of user stories
    - button - create new story
   
