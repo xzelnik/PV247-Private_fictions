@@ -1,8 +1,8 @@
 import usePageTitle from '../hooks/usePageTitle';
 // import useLoggedInUser from '../hooks/useLoggedInUser';
 
-const Home = () => {
-	usePageTitle('Home');
+const NewStory = () => {
+	usePageTitle('New Story');
 	// const user = useLoggedInUser();
 
 	// useEffect(
@@ -19,15 +19,17 @@ const Home = () => {
 
 	/**
 	 * TODO
-	 * Add some welcoming text
-	 * Add buttons for login page and for catalog page
+	 * Create form for new story
+	 * Add input for title
+	 * Add textfield for the story text
+	 * Add checkboxes for tags
+	 * add addDocument -> takes all data from the form, add 'by' as email of the logged in user
 	 */
-
 	return (
-		<div className="homepage">
-			<h1>Welcome to Private Fictions</h1>
+		<div className="new-story">
+			<h1>New Story Page</h1>
 		</div>
 	);
 };
 
-export default Home;
+export default NewStory;

@@ -3,7 +3,8 @@ import { onSnapshot } from 'firebase/firestore';
 
 import usePageTitle from '../hooks/usePageTitle';
 import useLoggedInUser from '../hooks/useLoggedInUser';
-import { Story, storiesCollection } from "../utils/firebase";
+import { Story, storiesCollection } from '../utils/firebase';
+import StoryPreview from '../components/StoryPreview';
 
 const Profile = () => {
 	usePageTitle('Profile');
@@ -23,22 +24,28 @@ const Profile = () => {
 		[]
 	);
 
+	const createStory = () => {
+		console.log('story');
+	};
+
 	return (
 		<>
 			{!!stories.length && (
-				<>
-					<div className="stories">
-						{stories.map(story => (
-							<StoryPreview
-								key={story.date.seconds}
-							/>
-						))}
-					</div>
-				</>
+				<div className="stories">
+					{stories.map(story => (
+						<StoryPreview
+							key={story.date.nanoseconds}
+							title={story.title}
+							description={story.shortDescription}
+							tags={story.tags}
+							rating={story.rating}
+						/>
+					))}
+				</div>
 			)}
-			<div className="add-story-button">
+			<button className="add-story-button" onClick={() => createStory()}>
 				+ Create story
-			</div>
+			</button>
 		</>
 	);
 };

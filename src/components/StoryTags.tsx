@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from 'react';
 
 type StoryTagProps = {
 	tags: string;
@@ -9,13 +9,13 @@ const StoryTags: FC<StoryTagProps> = ({ tags }) => (
 		{!!tags.length && (
 			<>
 				{tags.split(',').map(tag => (
-					<div className="tag">
+					<div key={tag} className="tag">
 						{tag}
 					</div>
 				))}
 			</>
 		)}
 	</div>
-)
+);
 
 export default StoryTags;

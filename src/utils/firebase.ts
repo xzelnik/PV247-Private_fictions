@@ -17,6 +17,10 @@ import {
 } from 'firebase/firestore';
 
 // Initialize Firebase
+
+/**
+ * TODO setup new firebase project/app and replace this config
+ */
 initializeApp({
 	apiKey: 'AIzaSyBuhsAp5o0x9dF7blhpMsNI-yoV0Ccr2eQ',
 	authDomain: 'task-8-25326.firebaseapp.com',
@@ -59,7 +63,7 @@ export type Rating = {
 	by: string;
 	storyId: string;
 	value: number;
-}
+};
 
 export type Story = {
 	by: string;
@@ -69,7 +73,7 @@ export type Story = {
 	date: Timestamp;
 	tags: string;
 	rating: number;
-}
+};
 
 export const commentsCollection = collection(
 	db,
@@ -79,7 +83,6 @@ export const commentsCollection = collection(
 export const commentsDocument = (id: string) =>
 	doc(db, 'comments', id) as DocumentReference<Comment>;
 
-
 export const ratingsCollection = collection(
 	db,
 	'ratings'
@@ -87,7 +90,6 @@ export const ratingsCollection = collection(
 
 export const ratingsDocument = (id: string) =>
 	doc(db, 'ratings', id) as DocumentReference<Rating>;
-
 
 export const storiesCollection = collection(
 	db,
