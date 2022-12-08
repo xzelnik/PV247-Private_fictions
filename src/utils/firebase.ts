@@ -16,6 +16,8 @@ import {
 	Timestamp
 } from 'firebase/firestore';
 
+import TagEnum from '../enums/TagEnum';
+
 // Initialize Firebase
 
 /**
