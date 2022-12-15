@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { onSnapshot } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, Card, Grid } from '@mui/material';
 
 import usePageTitle from '../hooks/usePageTitle';
 import useLoggedInUser from '../hooks/useLoggedInUser';
@@ -20,27 +20,31 @@ const Profile = () => {
 				setStories(
 					snapshot.docs
 						.map(d => d.data())
-						.filter(st => st.by === user?.email)
+						.filter(story => story.by === user?.email)
 						.sort((lhs, rhs) => rhs.date.seconds - lhs.date.seconds)
 				)
 			),
-		[]
+		[user]
 	);
 
 	return (
 		<>
 			{!!stories.length && (
-				<div className="stories">
-					{stories.map(story => (
-						<StoryPreview
-							key={story.date.nanoseconds}
-							title={story.title}
-							description={story.shortDescription}
-							tags={story.tags}
-							rating={story.rating}
-						/>
+				<Grid container spacing={2}>
+					{stories.map((story, i) => (
+						<Grid key={i} item xs={12}>
+							<Card sx={{ maxWWidth: 345 }}>
+								<StoryPreview
+									key={story.date.nanoseconds}
+									title={story.title}
+									description={story.shortDescription}
+									tags={story.tags}
+									rating={story.rating}
+								/>
+							</Card>
+						</Grid>
 					))}
-				</div>
+				</Grid>
 			)}
 			<Button component={Link} to="/new-story">
 				+ Create New Story

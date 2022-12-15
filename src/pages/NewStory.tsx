@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import {
 	Button,
 	FormControlLabel,
@@ -8,14 +8,18 @@ import {
 	ToggleButton,
 	ToggleButtonGroup
 } from '@mui/material';
+import { addDoc, Timestamp } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 import usePageTitle from '../hooks/usePageTitle';
 import TagEnum from '../enums/TagEnum';
-// import useLoggedInUser from '../hooks/useLoggedInUser';
+import { storiesCollection } from '../utils/firebase';
+import useLoggedInUser from '../hooks/useLoggedInUser';
 
 const NewStory = () => {
 	usePageTitle('New Story');
-	// const user = useLoggedInUser();
+	const user = useLoggedInUser();
+	const navigate = useNavigate();
 	const [story, setStory] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
@@ -34,7 +38,18 @@ const NewStory = () => {
 	};
 
 	const publishStory = () => {
-		console.log(title, description, tags, story);
+		if (user?.email) {
+			addDoc(storiesCollection, {
+				by: user.email,
+				title,
+				shortDescription: description,
+				text: story,
+				date: Timestamp.now(),
+				tags: tags.toString(),
+				rating: 0
+			});
+			navigate('/');
+		}
 	};
 
 	const handleTagsChange = (
@@ -55,81 +70,100 @@ const NewStory = () => {
 	return (
 		<div className="new-story">
 			<h1>New Story Page</h1>
-			<Button type="submit" variant="outlined" onClick={() => publishStory()}>
-				Publish story
-			</Button>
-			<FormGroup
+			<Paper
+				component="form"
+				onSubmit={async (e: FormEvent) => {
+					e.preventDefault();
+					try {
+						publishStory();
+					} catch (err) {
+						window.alert(err);
+					}
+				}}
 				sx={{
+					display: 'flex',
+					flexDirection: 'column',
 					width: '100%',
-					justifyContent: 'stretch'
+					p: 4,
+					gap: 2
 				}}
 			>
-				<Paper
-					variant="outlined"
+				<FormGroup
 					sx={{
 						width: '100%',
-						justifyContent: 'space-between'
+						justifyContent: 'stretch'
 					}}
 				>
-					<ToggleButtonGroup
-						value={tags}
-						onChange={handleTagsChange}
-						aria-label="Select tags:"
+					<Paper
+						variant="outlined"
+						sx={{
+							width: '100%',
+							justifyContent: 'space-between'
+						}}
 					>
-						{Object.values(TagEnum).map((tag, i) => (
-							<ToggleButton key={i} value={tag} aria-label={tag}>
-								{tag}
-							</ToggleButton>
-						))}
-					</ToggleButtonGroup>
-				</Paper>
-				<FormControlLabel
-					control={
-						<TextField
-							required
-							id="story-title"
-							label=""
-							value={title}
-							onChange={handleTitleChange}
-							variant="filled"
-						/>
-					}
-					label="Your title"
-					labelPlacement="top"
-				/>
-				<FormControlLabel
-					control={
-						<TextField
-							multiline
-							required
-							value={description}
-							onChange={handleDescriptionChange}
-							maxRows={5}
-							id="story-description"
-							label="Describe shortly"
-							variant="filled"
-						/>
-					}
-					label="Short descriprtion"
-					labelPlacement="top"
-				/>
-				<FormControlLabel
-					control={
-						<TextField
-							multiline
-							required
-							value={story}
-							onChange={handleStoryChange}
-							maxRows={120}
-							id="story-text"
-							label="..."
-							variant="filled"
-						/>
-					}
-					labelPlacement="top"
-					label="Your story"
-				/>
-			</FormGroup>
+						<ToggleButtonGroup
+							value={tags}
+							onChange={handleTagsChange}
+							aria-label="Select tags:"
+						>
+							{Object.values(TagEnum).map((tag, i) => (
+								<ToggleButton key={i} value={tag} aria-label={tag}>
+									{tag}
+								</ToggleButton>
+							))}
+						</ToggleButtonGroup>
+					</Paper>
+					<FormControlLabel
+						control={
+							<TextField
+								required
+								id="story-title"
+								label=""
+								value={title}
+								onChange={handleTitleChange}
+								variant="filled"
+							/>
+						}
+						label="Your title"
+						labelPlacement="top"
+					/>
+					<FormControlLabel
+						control={
+							<TextField
+								multiline
+								required
+								value={description}
+								onChange={handleDescriptionChange}
+								maxRows={5}
+								id="story-description"
+								label="Describe shortly"
+								variant="filled"
+							/>
+						}
+						label="Short descriprtion"
+						labelPlacement="top"
+					/>
+					<FormControlLabel
+						control={
+							<TextField
+								multiline
+								required
+								value={story}
+								onChange={handleStoryChange}
+								maxRows={120}
+								id="story-text"
+								label="..."
+								variant="filled"
+							/>
+						}
+						labelPlacement="top"
+						label="Your story"
+					/>
+				</FormGroup>
+				<Button type="submit" variant="outlined" onClick={() => publishStory()}>
+					Publish story
+				</Button>
+			</Paper>
 		</div>
 	);
 };

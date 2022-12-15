@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Timestamp } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 import {
 	Card,
 	Grid,
@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 
 import usePageTitle from '../hooks/usePageTitle';
-import { Story } from '../utils/firebase';
+import { storiesCollection, Story } from '../utils/firebase';
 import StoryPreview from '../components/StoryPreview';
 import { SortEnum } from '../enums/SortEnum';
 import TagEnum from '../enums/TagEnum';
@@ -51,45 +51,24 @@ const Catalog = () => {
 		}
 	};
 
-	useEffect(
-		() =>
-			// onSnapshot(storiesCollection, snapshot =>
-			// 	setStories(
-			// 		snapshot.docs
-			// 			.map(d => d.data())
-			// 			.sort((lhs, rhs) => rhs.date.seconds - lhs.date.seconds)
-			// 	)
-			// ),
+	useEffect(() => {
+		const unsubscribe = onSnapshot(storiesCollection, snapshot => {
 			setStories(
-				[
-					{
-						by: 'Kiki',
-						title: 'AStor',
-						shortDescription: 'good',
-						text: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbb  aaaaaaa',
-						date: Timestamp.now(),
-						tags: TagEnum.FANTASY.toString(),
-						rating: 2
-					},
-					{
-						by: 'Kiki2',
-						title: 'ZStor2',
-						shortDescription: 'good2',
-						text: 'a asa aaaaa aaa a aaa   aa  aaaaa',
-						date: Timestamp.now(),
-						tags: `${TagEnum.CRIME.toString()},${TagEnum.POETRY.toString()}`,
-						rating: 5
-					}
-				]
+				snapshot.docs
+					.map(d => d.data())
 					.filter(
 						story =>
 							tags.length === 0 ||
 							story.tags.split(',').some(st => tags.includes(st as TagEnum))
 					)
 					.sort(mySort())
-			),
-		[sort, tags]
-	);
+			);
+		});
+		return () => {
+			unsubscribe();
+		};
+	}, [sort, tags]);
+
 	/**
 	 * TODO
 	 * Add filters -> add functionality for the filters -- tags, authors
