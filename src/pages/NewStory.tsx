@@ -8,12 +8,12 @@ import {
 	ToggleButton,
 	ToggleButtonGroup
 } from '@mui/material';
-import { addDoc, Timestamp } from 'firebase/firestore';
+import { setDoc, Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 import usePageTitle from '../hooks/usePageTitle';
 import TagEnum from '../enums/TagEnum';
-import { storiesCollection } from '../utils/firebase';
+import { storiesDocument } from '../utils/firebase';
 import useLoggedInUser from '../hooks/useLoggedInUser';
 
 const NewStory = () => {
@@ -39,7 +39,8 @@ const NewStory = () => {
 
 	const publishStory = () => {
 		if (user?.email) {
-			addDoc(storiesCollection, {
+			const id = uuid();
+			setDoc(storiesDocument(id), {
 				by: user.email,
 				title,
 				shortDescription: description,
@@ -47,7 +48,7 @@ const NewStory = () => {
 				date: Timestamp.now(),
 				tags: tags.toString(),
 				rating: 0,
-				id: uuid()
+				id
 			});
 			navigate('/catalog');
 		}

@@ -35,7 +35,7 @@ const StoryView = () => {
 			}}
 		>
 			{story && <h1>{story.title}</h1>}
-			{story && <p>{story.text}</p>}
+			{story && <div>{story.text}</div>}
 		</Paper>
 	);
 };

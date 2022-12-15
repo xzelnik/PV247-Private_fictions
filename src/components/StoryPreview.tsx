@@ -28,9 +28,9 @@ const StoryPreview: FC<Props> = ({
 	>
 		<h1>{title}</h1>
 		<p>Rarting: {rating}/5</p>
-		<p>
+		<div>
 			<StoryTags tags={tags} />
-		</p>
+		</div>
 		<p>{description}</p>
 		{edit && (
 			<Button variant="contained" component={Link} to={`/story-edit/${id}`}>

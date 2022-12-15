@@ -8,11 +8,10 @@ import {
 	ToggleButtonGroup
 } from '@mui/material';
 import {
-	doc,
 	getFirestore,
 	onSnapshot,
-	Timestamp,
-	updateDoc
+	setDoc,
+	Timestamp
 } from 'firebase/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -35,7 +34,6 @@ type StoryDoc = {
 
 const StoryEdit = () => {
 	usePageTitle('Story Edit');
-	const db = getFirestore();
 	const { storyId } = useParams();
 	const user = useLoggedInUser();
 	const navigate = useNavigate();
@@ -44,7 +42,6 @@ const StoryEdit = () => {
 	const [description, setDescription] = useState('');
 	const [storyText, setStoryText] = useState('');
 	const [tags, setTags] = useState<TagEnum[]>([]);
-	const [storyDocument, setStoryDocument] = useState<StoryDoc>();
 
 	const handleTitleChange = (event: any) => {
 		setTitle(event.target.value);
@@ -70,18 +67,6 @@ const StoryEdit = () => {
 		[]
 	);
 
-	useEffect(
-		() =>
-			onSnapshot(storiesCollection, snapshot =>
-				setStoryDocument(
-					snapshot.docs
-						.map(doc => ({ docId: doc.id, ...doc.data() }))
-						.filter(item => item.id === storyId)[0]
-				)
-			),
-		[]
-	);
-
 	useEffect(() => {
 		if (story) {
 			setTitle(story?.title);
@@ -91,9 +76,8 @@ const StoryEdit = () => {
 	}, [story]);
 
 	const editStory = () => {
-		if (user?.email && story && storyDocument) {
-			const storyToEdit = doc(db, 'Stories', storyDocument.docId);
-			updateDoc(storyToEdit, {
+		if (user?.email && story) {
+			setDoc(storiesDocument(story.id), {
 				by: user.email,
 				title,
 				shortDescription: description,
