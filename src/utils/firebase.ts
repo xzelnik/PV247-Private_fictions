@@ -75,6 +75,7 @@ export type Story = {
 	date: Timestamp;
 	tags: string;
 	rating: number;
+	id: string;
 };
 
 export const commentsCollection = collection(

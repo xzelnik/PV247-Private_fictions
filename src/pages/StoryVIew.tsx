@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import {
 	Box,
 	Button,
@@ -9,20 +9,29 @@ import {
 	ToggleButton,
 	ToggleButtonGroup
 } from '@mui/material';
-import { addDoc, Timestamp } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { addDoc, onSnapshot, Timestamp } from 'firebase/firestore';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import usePageTitle from '../hooks/usePageTitle';
 import TagEnum from '../enums/TagEnum';
-import { storiesCollection } from '../utils/firebase';
-import useLoggedInUser from '../hooks/useLoggedInUser';
+import { storiesCollection, Story } from '../utils/firebase';
 
 const StoryView = () => {
+	const { storyId } = useParams();
 	usePageTitle('');
-	const [story, setStory] = useState('');
-	const [title, setTitle] = useState('');
-	const [description, setDescription] = useState('');
-	const [tags, setTags] = useState<TagEnum[]>([]);
+	const [story, setStory] = useState<Story>();
+
+	useEffect(
+		() =>
+			onSnapshot(storiesCollection, snapshot =>
+				setStory(
+					snapshot.docs
+						.map(d => d.data())
+						.filter(story => story.id === storyId)[0] || null
+				)
+			),
+		[]
+	);
 
 	return (
 		<Paper
@@ -35,8 +44,8 @@ const StoryView = () => {
 				px: 2
 			}}
 		>
-			<h1>{title}</h1>
-			<p>{story}</p>
+			{story && <h1>{story.title}</h1>}
+			{story && <p>{story.text}</p>}
 		</Paper>
 	);
 };

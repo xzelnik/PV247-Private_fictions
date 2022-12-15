@@ -7,6 +7,7 @@ import NotFound from '../pages/NotFound';
 import Catalog from '../pages/Catalog';
 import Profile from '../pages/Profile';
 import NewStory from '../pages/NewStory';
+import StoryView from '../pages/StoryVIew';
 
 const AppRoutes = () => {
 	const user = useLoggedInUser();
@@ -14,6 +15,7 @@ const AppRoutes = () => {
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/catalog" element={<Catalog />} />
+			<Route path="/story-view/:storyId" element={<StoryView />} />
 			{user && <Route path="/profile" element={<Profile />} />}
 			{!user && <Route path="/login" element={<Login />} />}
 			{user && <Route path="/new-story" element={<NewStory />} />}

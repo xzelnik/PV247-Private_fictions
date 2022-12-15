@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import {
 	Box,
 	Button,
@@ -45,7 +46,8 @@ const NewStory = () => {
 				text: story,
 				date: Timestamp.now(),
 				tags: tags.toString(),
-				rating: 0
+				rating: 0,
+				id: uuid()
 			});
 			navigate('/');
 		}

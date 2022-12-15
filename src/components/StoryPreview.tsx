@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import StoryTags from './StoryTags';
 
 type Props = {
+	id: string;
 	title: string;
 	description: string;
 	tags: string;
@@ -15,7 +16,7 @@ type Props = {
  * TODO
  * Add correct link to story page
  */
-const StoryPreview: FC<Props> = ({ title, description, tags, rating }) => (
+const StoryPreview: FC<Props> = ({ id, title, description, tags, rating }) => (
 	<Box
 		sx={{
 			width: '100%'
@@ -27,7 +28,7 @@ const StoryPreview: FC<Props> = ({ title, description, tags, rating }) => (
 			<StoryTags tags={tags} />
 		</p>
 		<p>{description}</p>
-		<Button variant="contained" component={Link} to="/new-story">
+		<Button variant="contained" component={Link} to={`/story-view/${id}`}>
 			Read story
 		</Button>
 	</Box>

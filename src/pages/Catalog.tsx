@@ -143,6 +143,7 @@ const Catalog = () => {
 							<Card sx={{ padding: 5 }}>
 								<StoryPreview
 									key={story.date.nanoseconds}
+									id={story.id}
 									title={story.title}
 									description={story.shortDescription}
 									tags={story.tags}
