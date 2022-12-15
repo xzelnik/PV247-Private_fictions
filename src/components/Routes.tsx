@@ -16,7 +16,7 @@ const AppRoutes = () => {
 			<Route path="/catalog" element={<Catalog />} />
 			{user && <Route path="/profile" element={<Profile />} />}
 			{!user && <Route path="/login" element={<Login />} />}
-			{!user && <Route path="/new-story" element={<NewStory />} />}
+			{user && <Route path="/new-story" element={<NewStory />} />}
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

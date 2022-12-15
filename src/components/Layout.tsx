@@ -15,17 +15,14 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 						<Button component={Link} to="/">
 							Home
 						</Button>
-						<Button component={Link} to="/play">
-							Play
-						</Button>
-						<Button component={Link} to="/about">
-							About
-						</Button>
-						<Button component={Link} to="/reviews">
-							Reviews
+						<Button component={Link} to="/profile">
+							Profile
 						</Button>
 						<Button component={Link} to="/catalog">
 							Catalog
+						</Button>
+						<Button component={Link} to="/new-story">
+							+ New Story
 						</Button>
 						<Box sx={{ flexGrow: 1 }} />
 						{!user ? (

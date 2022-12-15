@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { onSnapshot } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 import usePageTitle from '../hooks/usePageTitle';
 import useLoggedInUser from '../hooks/useLoggedInUser';
@@ -18,15 +20,12 @@ const Profile = () => {
 				setStories(
 					snapshot.docs
 						.map(d => d.data())
+						.filter(st => st.by === user?.email)
 						.sort((lhs, rhs) => rhs.date.seconds - lhs.date.seconds)
 				)
 			),
 		[]
 	);
-
-	const createStory = () => {
-		console.log('story');
-	};
 
 	return (
 		<>
@@ -43,9 +42,9 @@ const Profile = () => {
 					))}
 				</div>
 			)}
-			<button className="add-story-button" onClick={() => createStory()}>
-				+ Create story
-			</button>
+			<Button component={Link} to="/new-story">
+				+ Create New Story
+			</Button>
 		</>
 	);
 };
