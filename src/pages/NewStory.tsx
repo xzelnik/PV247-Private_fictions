@@ -1,8 +1,7 @@
 import { FormEvent, useState } from 'react';
 import {
+	Box,
 	Button,
-	FormControlLabel,
-	FormGroup,
 	Paper,
 	TextField,
 	ToggleButton,
@@ -59,17 +58,16 @@ const NewStory = () => {
 		setTags(newTags);
 	};
 
-	/**
-	 * TODO
-	 * Create form for new story
-	 * Add input for title
-	 * Add textfield for the story text
-	 * Add checkboxes for tags
-	 * add addDocument -> takes all data from the form, add 'by' as email of the logged in user
-	 */
 	return (
-		<div className="new-story">
-			<h1>New Story Page</h1>
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				height: '100%',
+				width: '100%'
+			}}
+		>
+			<h1>Create a new story</h1>
 			<Paper
 				component="form"
 				onSubmit={async (e: FormEvent) => {
@@ -83,88 +81,82 @@ const NewStory = () => {
 				sx={{
 					display: 'flex',
 					flexDirection: 'column',
-					width: '100%',
-					p: 4,
-					gap: 2
+					width: '100%'
 				}}
 			>
-				<FormGroup
+				<Paper
+					variant="outlined"
 					sx={{
 						width: '100%',
-						justifyContent: 'stretch'
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						padding: '0 0 0 5px'
 					}}
 				>
-					<Paper
-						variant="outlined"
+					<p>Select story categories:</p>
+					<ToggleButtonGroup
+						value={tags}
+						onChange={handleTagsChange}
+						aria-label="Select tags:"
 						sx={{
-							width: '100%',
-							justifyContent: 'space-between'
+							display: 'flex',
+							justifyContent: 'left'
 						}}
 					>
-						<ToggleButtonGroup
-							value={tags}
-							onChange={handleTagsChange}
-							aria-label="Select tags:"
-						>
-							{Object.values(TagEnum).map((tag, i) => (
-								<ToggleButton key={i} value={tag} aria-label={tag}>
-									{tag}
-								</ToggleButton>
-							))}
-						</ToggleButtonGroup>
-					</Paper>
-					<FormControlLabel
-						control={
-							<TextField
-								required
-								id="story-title"
-								label=""
-								value={title}
-								onChange={handleTitleChange}
-								variant="filled"
-							/>
-						}
-						label="Your title"
-						labelPlacement="top"
+						{Object.values(TagEnum).map((tag, i) => (
+							<ToggleButton key={i} value={tag} aria-label={tag}>
+								{tag}
+							</ToggleButton>
+						))}
+					</ToggleButtonGroup>
+				</Paper>
+				<Paper
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						width: '100%',
+						padding: 2
+					}}
+				>
+					<p>Story title:</p>
+					<TextField
+						required
+						id="story-title"
+						label=""
+						value={title}
+						onChange={handleTitleChange}
+						variant="filled"
 					/>
-					<FormControlLabel
-						control={
-							<TextField
-								multiline
-								required
-								value={description}
-								onChange={handleDescriptionChange}
-								maxRows={5}
-								id="story-description"
-								label="Describe shortly"
-								variant="filled"
-							/>
-						}
-						label="Short descriprtion"
-						labelPlacement="top"
+					<p>Short description of your story:</p>
+					<TextField
+						multiline
+						required
+						value={description}
+						onChange={handleDescriptionChange}
+						maxRows={5}
+						id="story-description"
+						label="Describe shortly"
+						variant="filled"
 					/>
-					<FormControlLabel
-						control={
-							<TextField
-								multiline
-								required
-								value={story}
-								onChange={handleStoryChange}
-								maxRows={120}
-								id="story-text"
-								label="..."
-								variant="filled"
-							/>
-						}
-						labelPlacement="top"
-						label="Your story"
+					<p>Your story:</p>
+					<TextField
+						multiline
+						required
+						value={story}
+						onChange={handleStoryChange}
+						rows={25}
+						maxRows={120}
+						id="story-text"
+						label="..."
+						variant="filled"
 					/>
-				</FormGroup>
+				</Paper>
 				<Button type="submit" variant="outlined" onClick={() => publishStory()}>
 					Publish story
 				</Button>
 			</Paper>
-		</div>
+		</Box>
 	);
 };
 

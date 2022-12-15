@@ -16,12 +16,18 @@ type Props = {
  * Add correct link to story page
  */
 const StoryPreview: FC<Props> = ({ title, description, tags, rating }) => (
-	<Box>
+	<Box
+		sx={{
+			width: '100%'
+		}}
+	>
 		<h1>{title}</h1>
-		<p>{rating}/5</p>
-		<StoryTags tags={tags} />
+		<p>Rarting: {rating}/5</p>
+		<p>
+			<StoryTags tags={tags} />
+		</p>
 		<p>{description}</p>
-		<Button component={Link} to="/new-story">
+		<Button variant="contained" component={Link} to="/new-story">
 			Read story
 		</Button>
 	</Box>

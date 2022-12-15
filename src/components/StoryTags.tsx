@@ -1,3 +1,5 @@
+import { Stack } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { FC } from 'react';
 
 type StoryTagProps = {
@@ -5,17 +7,15 @@ type StoryTagProps = {
 };
 
 const StoryTags: FC<StoryTagProps> = ({ tags }) => (
-	<div className="story-tags">
+	<Stack direction="row" spacing={1}>
 		{!!tags.length && (
 			<>
 				{tags.split(',').map(tag => (
-					<div key={tag} className="tag">
-						{tag}
-					</div>
+					<Chip variant="outlined" color="primary" key={tag} label={tag} />
 				))}
 			</>
 		)}
-	</div>
+	</Stack>
 );
 
 export default StoryTags;

@@ -1,20 +1,43 @@
+import { FormEvent, useState } from 'react';
+import {
+	Box,
+	Button,
+	FormControlLabel,
+	FormGroup,
+	Paper,
+	TextField,
+	ToggleButton,
+	ToggleButtonGroup
+} from '@mui/material';
+import { addDoc, Timestamp } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+
 import usePageTitle from '../hooks/usePageTitle';
-// import useLoggedInUser from '../hooks/useLoggedInUser';
+import TagEnum from '../enums/TagEnum';
+import { storiesCollection } from '../utils/firebase';
+import useLoggedInUser from '../hooks/useLoggedInUser';
 
 const StoryView = () => {
-	usePageTitle('Story');
+	usePageTitle('');
+	const [story, setStory] = useState('');
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
+	const [tags, setTags] = useState<TagEnum[]>([]);
 
-	/**
-	 * TODO
-	 * Add props with story parameters
-	 * Display story parameters
-	 * Add rating option
-	 * Add comment section
-	 */
 	return (
-		<div className="new-story">
-			<h1>New Story Page</h1>
-		</div>
+		<Paper
+			variant="outlined"
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				height: '100%',
+				width: '100%',
+				px: 2
+			}}
+		>
+			<h1>{title}</h1>
+			<p>{story}</p>
+		</Paper>
 	);
 };
 

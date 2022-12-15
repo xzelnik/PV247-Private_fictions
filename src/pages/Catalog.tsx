@@ -69,12 +69,6 @@ const Catalog = () => {
 		};
 	}, [sort, tags]);
 
-	/**
-	 * TODO
-	 * Add filters -> add functionality for the filters -- tags, authors
-	 * Add sorting -> ratings, title
-	 */
-
 	return (
 		<Paper
 			variant="outlined"
@@ -89,10 +83,13 @@ const Catalog = () => {
 			<Paper
 				variant="outlined"
 				sx={{
+					display: 'inline-flex',
 					width: '100%',
-					justifyContent: 'space-between'
+					justifyContent: 'space-between',
+					padding: '0 0 0 15px'
 				}}
 			>
+				<p>Choose a category:</p>
 				<ToggleButtonGroup
 					value={tags}
 					onChange={handleTagsChange}
@@ -117,8 +114,8 @@ const Catalog = () => {
 					py: 1
 				}}
 			>
-				<Typography sx={{ display: 'flex', alignItems: 'left', gap: 1 }}>
-					There are X stories
+				<Typography sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+					Sort stories:
 				</Typography>
 				<Select
 					labelId="demo-controlled-open-select-label"
@@ -130,20 +127,20 @@ const Catalog = () => {
 					}}
 					onChange={handleSortChange}
 				>
-					<MenuItem value={SortEnum.AZ}>{'A->Z'}</MenuItem>
-					<MenuItem value={SortEnum.ZA}>{'Z->A'}</MenuItem>
-					<MenuItem value={SortEnum.OLD}>{'old->new'}</MenuItem>
-					<MenuItem value={SortEnum.NEW}>{'new->old'}</MenuItem>
-					<MenuItem value={SortEnum.RATING}>Ratings</MenuItem>
+					<MenuItem value={SortEnum.AZ}>A to Z</MenuItem>
+					<MenuItem value={SortEnum.ZA}>Z to A</MenuItem>
+					<MenuItem value={SortEnum.OLD}>Oldest</MenuItem>
+					<MenuItem value={SortEnum.NEW}>Newest</MenuItem>
+					<MenuItem value={SortEnum.RATING}>By ratings</MenuItem>
 				</Select>
 			</Paper>
 			{/* Story cards  */}
 			{!!stories.length && (
-				<Grid container spacing={2}>
+				<Grid container spacing={2} padding={2}>
 					{stories.map((story, i) => (
 						//TODO add button to read full story
-						<Grid key={i} item xs={12}>
-							<Card sx={{ maxWWidth: 345 }}>
+						<Grid key={i} item xs={4}>
+							<Card sx={{ padding: 5 }}>
 								<StoryPreview
 									key={story.date.nanoseconds}
 									title={story.title}
