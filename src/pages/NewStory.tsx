@@ -49,7 +49,7 @@ const NewStory = () => {
 				rating: 0,
 				id: uuid()
 			});
-			navigate('/');
+			navigate('/catalog');
 		}
 	};
 

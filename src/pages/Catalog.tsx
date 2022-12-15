@@ -142,6 +142,7 @@ const Catalog = () => {
 						<Grid key={i} item xs={4}>
 							<Card sx={{ padding: 5 }}>
 								<StoryPreview
+									edit={false}
 									key={story.date.nanoseconds}
 									id={story.id}
 									title={story.title}

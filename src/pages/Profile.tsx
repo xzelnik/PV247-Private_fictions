@@ -35,6 +35,7 @@ const Profile = () => {
 						<Grid key={i} item xs={12}>
 							<Card sx={{ maxWWidth: 345 }}>
 								<StoryPreview
+									edit
 									id={story.id}
 									key={story.date.nanoseconds}
 									title={story.title}

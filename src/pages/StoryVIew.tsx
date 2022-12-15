@@ -1,19 +1,9 @@
-import { FormEvent, useEffect, useState } from 'react';
-import {
-	Box,
-	Button,
-	FormControlLabel,
-	FormGroup,
-	Paper,
-	TextField,
-	ToggleButton,
-	ToggleButtonGroup
-} from '@mui/material';
-import { addDoc, onSnapshot, Timestamp } from 'firebase/firestore';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Paper } from '@mui/material';
+import { onSnapshot } from 'firebase/firestore';
+import { useParams } from 'react-router-dom';
 
 import usePageTitle from '../hooks/usePageTitle';
-import TagEnum from '../enums/TagEnum';
 import { storiesCollection, Story } from '../utils/firebase';
 
 const StoryView = () => {
