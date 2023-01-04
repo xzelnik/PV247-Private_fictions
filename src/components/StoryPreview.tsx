@@ -27,11 +27,11 @@ const StoryPreview: FC<Props> = ({
 		}}
 	>
 		<h1>{title}</h1>
-		<p>Rarting: {rating}/5</p>
+		<p>Rating: {rating}/5</p>
 		<div>
 			<StoryTags tags={tags} />
 		</div>
-		<p>{description}</p>
+		<pre>{description}</pre>
 		{edit && (
 			<Button variant="contained" component={Link} to={`/story-edit/${id}`}>
 				Edit story
