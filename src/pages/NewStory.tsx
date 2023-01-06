@@ -48,7 +48,8 @@ const NewStory = () => {
 				date: Timestamp.now(),
 				tags: tags.toString(),
 				rating: 0,
-				id
+				id,
+				ratingCount: 0
 			});
 			navigate('/catalog');
 		}

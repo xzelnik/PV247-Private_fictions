@@ -85,7 +85,8 @@ const StoryEdit = () => {
 				date: Timestamp.now(),
 				tags: tags.toString(),
 				rating: 0,
-				id: story.id
+				id: story.id,
+				ratingCount: 0
 			});
 			navigate('/profile');
 		}

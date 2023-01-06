@@ -55,6 +55,7 @@ const db = getFirestore();
 
 // collections
 export type Comment = {
+	id: string;
 	by: string;
 	text: string;
 	storyId: string;
@@ -75,6 +76,7 @@ export type Story = {
 	date: Timestamp;
 	tags: string;
 	rating: number;
+	ratingCount: number;
 	id: string;
 };
 

@@ -138,7 +138,6 @@ const Catalog = () => {
 			{!!stories.length && (
 				<Grid container spacing={2} padding={2}>
 					{stories.map((story, i) => (
-						//TODO add button to read full story
 						<Grid key={i} item xs={4}>
 							<Card sx={{ padding: 5 }}>
 								<StoryPreview

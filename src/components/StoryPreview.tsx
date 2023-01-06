@@ -27,7 +27,7 @@ const StoryPreview: FC<Props> = ({
 		}}
 	>
 		<h1>{title}</h1>
-		<p>Rating: {rating}/5</p>
+		<p>Rating: {Math.round(rating * 10) / 10}/5</p>
 		<div>
 			<StoryTags tags={tags} />
 		</div>

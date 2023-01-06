@@ -3500,13 +3500,6 @@ babel-preset-react-app@^10.0.1:
     babel-plugin-macros "^3.1.0"
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
 
-babel-runtime@4.7.4:
-  version "4.7.4"
-  resolved "https://registry.npmjs.org/babel-runtime/-/babel-runtime-4.7.4.tgz"
-  integrity sha512-0gnK56hiHkbUCwqtaiK15MAsnNxI8T7aOBYUyoAYyNxWs86ExL0NNTDhn0eDO/AIhJf0oXMgV5+1wfSLQ/FMyw==
-  dependencies:
-    core-js "^0.6.1"
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
@@ -3941,11 +3934,6 @@ core-js-pure@^3.23.3, core-js-pure@^3.25.1:
   version "3.26.1"
   resolved "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.26.1.tgz"
   integrity sha512-VVXcDpp/xJ21KdULRq/lXdLzQAtX7+37LzpyfFM973il0tWSsDEoyzG38G14AjTpK9VTfiNM9jnFauq/CpaWGQ==
-
-core-js@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.npmjs.org/core-js/-/core-js-0.6.1.tgz"
-  integrity sha512-ANdRS9QdyvvVCqMD7gvDhgI5T+/t5FELQB1ZLN94oCDXTJLwt4Q1o6Nbc1wnVrhl6QPyJ5mv0k8hMCdAFLNbLg==
 
 core-js@^3.19.2:
   version "3.26.1"
@@ -8078,13 +8066,6 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
-range-at-index@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/range-at-index/-/range-at-index-1.0.4.tgz"
-  integrity sha512-Aob2FK5jL0cCKvIzA0tuRrdsSXTvxLY5p9dr7GrLY31NwKtUk5EhgHwcKi0kbUacJukGVRglLi6MEqBHB4NHMA==
-  dependencies:
-    babel-runtime "4.7.4"
-
 range-parser@^1.2.1, range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz"
@@ -8463,14 +8444,6 @@ reusify@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
-
-rich-textarea@^0.19.5:
-  version "0.19.5"
-  resolved "https://registry.npmjs.org/rich-textarea/-/rich-textarea-0.19.5.tgz"
-  integrity sha512-jGzE84BUs0VKLTEIdJaQcToQjRxYO1aNRnPNtnGupkwKWl59dCpp5EWWi5qxU1JMjPtKOBFSSynYG0srr71TJw==
-  dependencies:
-    range-at-index "^1.0.4"
-    use-sync-external-store "^1.2.0"
 
 rimraf@^3.0.0, rimraf@^3.0.2:
   version "3.0.2"
@@ -9420,11 +9393,6 @@ url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
-
-use-sync-external-store@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz"
-  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
