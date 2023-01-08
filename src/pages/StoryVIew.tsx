@@ -7,14 +7,12 @@ import usePageTitle from '../hooks/usePageTitle';
 import { storiesCollection, Story } from '../utils/firebase';
 import AddRating from '../components/AddRating';
 import AddComment from '../components/AddComment';
-import CommentView from '../components/CommentView';
 import CommentList from '../components/CommentList';
 
 const StoryView = () => {
 	const { storyId } = useParams();
 	usePageTitle('');
 	const [story, setStory] = useState<Story>();
-	const [comments, setComments] = useState<Comment[]>([]);
 
 	useEffect(
 		() =>

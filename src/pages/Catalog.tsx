@@ -94,6 +94,7 @@ const Catalog = () => {
 					value={tags}
 					onChange={handleTagsChange}
 					aria-label="Select tags:"
+					size="small"
 				>
 					{Object.values(TagEnum).map((tag, i) => (
 						<ToggleButton key={i} value={tag} aria-label={tag}>
@@ -138,7 +139,7 @@ const Catalog = () => {
 			{!!stories.length && (
 				<Grid container spacing={2} padding={2}>
 					{stories.map((story, i) => (
-						<Grid key={i} item xs={4}>
+						<Grid key={i} item xs={12}>
 							<Card sx={{ padding: 5 }}>
 								<StoryPreview
 									edit={false}

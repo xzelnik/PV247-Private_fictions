@@ -2,6 +2,7 @@
   "name": "pv247-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://xzelnik.github.io/PV247-Private_fictions",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -30,6 +31,7 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "^7.31.10",
+    "gh-pages": "^4.0.0",
     "prettier": "2.7.1",
     "typescript": "^4.9.3"
   },
@@ -38,7 +40,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"./src/**/*.{ts,tsx}\" && prettier \"./src/**/*.{ts,tsx}\" --check"
+    "lint": "eslint \"./src/**/*.{ts,tsx}\" && prettier \"./src/**/*.{ts,tsx}\" --check",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "@haaxor1689/eslint-config"

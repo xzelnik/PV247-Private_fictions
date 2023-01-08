@@ -1,10 +1,10 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Timestamp, addDoc, setDoc } from 'firebase/firestore';
+import { Timestamp, setDoc } from 'firebase/firestore';
 import { v4 as uuid } from 'uuid';
 
 import useField from '../hooks/useField';
-import { Story, commentsCollection, commentsDocument } from '../utils/firebase';
+import { Story, commentsDocument } from '../utils/firebase';
 import useLoggedInUser from '../hooks/useLoggedInUser';
 
 type Props = {

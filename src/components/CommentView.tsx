@@ -1,14 +1,8 @@
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
-import { deleteDoc, onSnapshot } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { Button, Card, CardContent, Typography } from '@mui/material';
+import { deleteDoc } from 'firebase/firestore';
 
 import useLoggedInUser from '../hooks/useLoggedInUser';
-import {
-	Comment,
-	Story,
-	commentsCollection,
-	commentsDocument
-} from '../utils/firebase';
+import { Comment, commentsDocument } from '../utils/firebase';
 
 type Props = {
 	comment?: Comment;

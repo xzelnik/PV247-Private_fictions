@@ -1,24 +1,10 @@
-import {
-	Button,
-	Card,
-	CardContent,
-	Grid,
-	Link,
-	Typography
-} from '@mui/material';
-import { deleteDoc, onSnapshot } from 'firebase/firestore';
+import { Card, Grid } from '@mui/material';
+import { onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
-import useLoggedInUser from '../hooks/useLoggedInUser';
-import {
-	Comment,
-	Story,
-	commentsCollection,
-	commentsDocument
-} from '../utils/firebase';
+import { Comment, Story, commentsCollection } from '../utils/firebase';
 
 import CommentView from './CommentView';
-import StoryPreview from './StoryPreview';
 
 type Props = {
 	story?: Story;

@@ -7,12 +7,7 @@ import {
 	ToggleButton,
 	ToggleButtonGroup
 } from '@mui/material';
-import {
-	getFirestore,
-	onSnapshot,
-	setDoc,
-	Timestamp
-} from 'firebase/firestore';
+import { onSnapshot, setDoc, Timestamp } from 'firebase/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import usePageTitle from '../hooks/usePageTitle';
